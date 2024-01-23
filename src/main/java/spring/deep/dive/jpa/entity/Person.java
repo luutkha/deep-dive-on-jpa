@@ -1,10 +1,7 @@
 package spring.deep.dive.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import spring.deep.dive.jpa.entity.common.AdditionalInfo;
 
 @Entity

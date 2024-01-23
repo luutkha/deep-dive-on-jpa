@@ -34,9 +34,7 @@ public class BookDao {
         Date from = format.parse(dateString);
         Date to = format.parse(dateString2);
         Predicate createdDateQuery = criteriaBuilder.between(book.get("createdDate"), from, to);
-
         criteriaQuery.where(titlePredicate, createdDateQuery).orderBy(criteriaBuilder.desc(book.get("createdDate")));
-
         TypedQuery<Book> query = em.createQuery(criteriaQuery);
         return query.getResultList();
     }

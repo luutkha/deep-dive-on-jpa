@@ -23,7 +23,6 @@ public class Book extends AdditionalInfo {
 
     private String title;
 
-//    private String author;
     public Book(String title) {
         this.title = title;
     }

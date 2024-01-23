@@ -9,8 +9,11 @@ import spring.deep.dive.jpa.entity.Person;
 import spring.deep.dive.jpa.repository.BookDao;
 import spring.deep.dive.jpa.repository.BookRepository;
 import spring.deep.dive.jpa.repository.PersonRepository;
+import spring.deep.dive.jpa.service.PersonService;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,12 +30,27 @@ public class MyCommandRunner implements CommandLineRunner {
     @Autowired
     BookDao bookDao;
 
+
+    @Autowired
+    PersonService personService;
+
     @Override
     public void run(String... args) throws Exception {
+//        createSampleData();
+
+        try {
+            personService.saveAllPerson(new ArrayList<>());
+        } catch (Exception e) {
+            System.out.println("Dang it, we have exception " + e.getClass());
+        }
+
+    }
+
+    private void createSampleData() throws ParseException {
         // Code to be executed at application startup
         System.out.println("Hello, this code runs at application startup!");
         if (personRepository.count() <= 0) {
-            for (int i = 0; i < 1000000000; i++) {
+            for (int i = 0; i < 1000; i++) {
                 personRepository.save(new Person("random-name" + i));
             }
         }
@@ -51,7 +69,7 @@ public class MyCommandRunner implements CommandLineRunner {
 
 
         if (bookRepository.count() <= 0) {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 100; i++) {
                 bookRepository.save(new Book("random-book-title" + i));
             }
         }
