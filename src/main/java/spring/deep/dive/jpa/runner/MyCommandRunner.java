@@ -37,13 +37,32 @@ public class MyCommandRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        createSampleData();
+        testTransactionMethod();
 
+//        testQueryByExample();
+
+
+    }
+
+    private void testQueryByExample() {
+        List<Person> allByExample = personService.findAllByExampleAdvanced(
+                new Person("random-name8")
+        );
+
+        if (!allByExample.isEmpty()) {
+            allByExample.forEach( e -> System.out.println(e.toString()));
+        }
+        else {
+            System.out.println("Can't find anything");
+        }
+    }
+
+    private void testTransactionMethod() {
         try {
             personService.saveAllPerson(new ArrayList<>());
         } catch (Exception e) {
             System.out.println("Dang it, we have exception " + e.getClass());
         }
-
     }
 
     private void createSampleData() throws ParseException {

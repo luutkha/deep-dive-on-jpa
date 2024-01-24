@@ -8,6 +8,7 @@ import spring.deep.dive.jpa.entity.common.AdditionalInfo;
 @Table(name = "persons")
 @Getter
 @Setter
+@ToString
 public class Person extends AdditionalInfo {
 
     @Id
