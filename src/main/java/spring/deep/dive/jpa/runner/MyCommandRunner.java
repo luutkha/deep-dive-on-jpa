@@ -50,7 +50,7 @@ public class MyCommandRunner implements CommandLineRunner {
 
     private void testQueryByExample() {
         List<Person> allByExample = personService.findAllByExampleAdvanced(
-                new Person("random-name8")
+                new Person("random-name82")
         );
 
         if (!allByExample.isEmpty()) {
