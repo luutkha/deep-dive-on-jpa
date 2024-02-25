@@ -6,11 +6,12 @@ import org.springframework.data.domain.ExampleMatcher;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring.deep.dive.jpa.dto.PersonNickNameOnly;
 import spring.deep.dive.jpa.entity.Person;
 import spring.deep.dive.jpa.repository.PersonRepository;
 import spring.deep.dive.jpa.service.PersonService;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
             }
 
 
-        return repository.saveAll(new ArrayList<>());
+        return repository.saveAll(personList);
     }
 
     @Override
@@ -99,5 +100,10 @@ public class PersonServiceImpl implements PersonService {
         Example<Person> example = Example.of(person, matcher);
 
         return repository.findAll(example);
+    }
+
+    @Override
+    public Collection<PersonNickNameOnly> findAllWithProjector() {
+        return repository.findAll(PersonNickNameOnly.class);
     }
 }

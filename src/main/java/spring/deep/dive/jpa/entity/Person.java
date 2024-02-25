@@ -2,6 +2,7 @@ package spring.deep.dive.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import spring.deep.dive.jpa.entity.common.AdditionalInfo;
 
 @Entity
@@ -16,6 +17,15 @@ public class Person extends AdditionalInfo {
     private Long id;
 
     private String name;
+    private String nickName;
+
+    @PrePersist
+    public void prePersist() {
+        if (nickName == null) {
+            nickName = "john doe";
+        }
+        // You can set default values for other fields as needed
+    }
 
     public Person(String name) {
         this.name = name;
